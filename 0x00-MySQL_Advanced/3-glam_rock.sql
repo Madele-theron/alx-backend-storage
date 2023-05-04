@@ -1,5 +1,5 @@
--- A SQL Script that ranks country origins of bands by fans:
--- Create a table called "users"
+-- A SQL Script that shows all bands that has Glam Rock as style:
+-- in order of lifespan
 SELECT DISTINCT band_name, DATEDIFF(IFNULL(split, NOW()), formed) as lifespan 
 FROM metal_bands 
-WHERE FIND_IN_SET('Glam rock', style)
+WHERE style LIKE '%Glam rock%';

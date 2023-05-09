@@ -12,9 +12,9 @@ def schools_by_topic(mongo_collection, topic):
         topic (str): the topic searched
 
     Returns:
-        Nothing
+        A list of schools having a specific topic:
     """
-    mongo_collection.find(
+    schools = mongo_collection.find(
         {"topic": topic},
     )
-
+    return schools

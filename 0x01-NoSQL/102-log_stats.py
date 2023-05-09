@@ -28,7 +28,6 @@ if __name__ == "__main__":
     print(f"{status_count} status check")
     
     # Get most present IPs
-    
     ip_list = collection.aggregate([
         {
             "$group":

@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     # Get number of documents in this collection:
     # `x logs` where `x` is the number of documents in this collection
-    print(f"{collection.count_documents()} logs")
+    print(f"{collection.estimated_document_count()} logs")
 
     # Get number of documents with each HTTP method:
     # Methods:

@@ -4,8 +4,7 @@
 
 
 def schools_by_topic(mongo_collection, topic):
-    """Updates the topics field of all school documents in the
-    specified collection with the given name.
+    """Returns the list of schools with a specific topic
 
     Args:
         mongo_collection (pymongo collection object): MongoDB collection
@@ -14,7 +13,5 @@ def schools_by_topic(mongo_collection, topic):
     Returns:
         A list of schools having a specific topic:
     """
-    schools = mongo_collection.find(
-        {"topics": topic},
-    )
-    return schools
+    return [doc for doc in mongo_collection.find({"topics": topic})]
+

@@ -24,6 +24,5 @@ if __name__ == "__main__":
 
     # Get number of documents with method=GET and path=/status
     status_count = collection.count_documents(
-        {'method': 'GET', 'path': "/status"}
-    )
+        {'method': 'GET', 'path': "/status"})
     print(f"{status_count} status check")

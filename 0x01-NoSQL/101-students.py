@@ -2,7 +2,23 @@
 """A Python function that returns all students sorted by average score:
 """
 
-
+def top_students(mongo_collection):
+    """ List all students sorted by score """
+    return mongo_collection.aggregate([
+        {
+            '$project': {
+                'name': '$name',
+                'averageScore': {
+                    '$avg': "$topics.score"
+                }
+            }
+        },
+        {
+            '$sort': {
+                "averageScore": -1
+            }
+        }
+    ])
 def top_students(mongo_collection):
     """List all students sorted by their average score
 
@@ -15,13 +31,13 @@ def top_students(mongo_collection):
 
     student_list = mongo_collection.aggregated([
         {
-            "$projects": {
-                "name": "$name",
-                "averageScore": {"$avg": "$topics.score"}
+            '$projects': {
+                'name': '$name',
+                'averageScore': {'$avg': "$topics.score"}
             }
         },
         {
-            "$sort": {"averageScore": -1}
+            '$sort': {"averageScore": -1}
         }
     ])
     

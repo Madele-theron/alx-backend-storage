@@ -14,7 +14,7 @@ def update_topics(mongo_collection, name, topics):
         topics (list of strings): the list of topics approached in the
 
     Returns:
-        New document
+        Nothing
     """
     mongo_collection.update_many(
         {"name": name},

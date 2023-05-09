@@ -29,7 +29,7 @@ def top_students(mongo_collection):
         All students sorted by average score
     """
 
-    student_list = mongo_collection.aggregated([
+    student_list = mongo_collection.aggregate([
         {
             '$projects': {
                 'name': '$name',

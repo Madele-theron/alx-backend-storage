@@ -12,9 +12,8 @@ def insert_school(mongo_collection, **kwargs):
         **kwargs: The keyword arguments for the new document.
 
     Returns:
-        Id of new document
+        New document
     """
     if len(kwargs) == 0:
         return None
-    document = mongo_collection.insert(kwargs)
-    return document.inserted_id
+    return mongo_collection.insert(kwargs)

@@ -6,6 +6,7 @@ import requests
 client = redis.Redis()
 count = 0
 
+
 def get_page(url: str) -> str:
     """
     Track how many times a particular URL was accessed in the key

@@ -13,7 +13,7 @@ def count_calls(method: Callable) -> Callable:
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         """Increments count for the key every time the method is called"""
-        self.client.incr(key)
+        self._redis.incr(key)
         return method(self, *args, **kwargs)
     return wrapper
 

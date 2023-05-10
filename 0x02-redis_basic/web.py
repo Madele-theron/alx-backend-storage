@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
 """ Redis advance task solutions"""
+import redis
+import requests
 
+client = redis.Redis()
+count = 0
 
 def get_page(url: str) -> str:
     """
-    Use requests module to obtain the HTML content
-    of a particular URL and returns it
+    Track how many times a particular URL was accessed in the key
+    Cache the result with an expiration time of 10 seconds.
     """
-    
+    client.set(f"cached:{url}", count)
 
-# In this tasks, we will implement a get_page function (prototype: def get_page(url: str) -> str:). The core of the function is very simple. It uses the requests module to obtain the HTML content of a particular URL and returns it.
+    # Get data response
+    response = requests.get(url)
 
-# Start in a new file named web.py and do not reuse the code written in exercise.py.
+    # Increment count for URL
+    client.incr(f"count:{url}")
+    data = client.get(f"cached:{url}")
+    client.setex(f"cached:{url}", 10, data)
 
-# Inside get_page track how many times a particular URL was accessed in the key "count:{url}" and cache the result with an expiration time of 10 seconds.
-
-# Tip: Use http://slowwly.robertomurray.co.uk to simulate a slow response and test your caching.
-
-# Bonus: implement this use case with decorators.
+    return response.text
